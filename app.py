@@ -7,7 +7,6 @@ from src.ui.base_style import style_base_layout, style_background_home
 from src.components.header import header
 
 def main():
-    header()
     style_base_layout()
     style_background_home()
     

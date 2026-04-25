@@ -1,6 +1,8 @@
 import streamlit as st
+from src.components.header import header
 
 def home_screen():
+    header()    
     col1, col2 = st.columns(2, gap="large")
 
     with col1:
