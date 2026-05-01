@@ -19,7 +19,16 @@ def teacher_screen():
 
 def teacher_dashboard():
     teacher_data = st.session_state.teacher_data
-    st.header(f"Welcome, {teacher_data['name']}!", text_alignment="center")
+    c1, c2 = st.columns([4,4], gap="xxsmall", vertical_alignment="center")
+
+    with c1:
+        header_dashboard()
+    with c2:
+        st.subheader(f"Welcome, {teacher_data['name']}!", text_alignment="center")
+        if st.button("Go to homepage", type = "secondary", shortcut="control + backspace", key="loginbckbtn", width="stretch"):
+            st.session_state['is_logged_in'] = False
+            del st.session.teacher_data
+            st.rerun()
 
 
 
