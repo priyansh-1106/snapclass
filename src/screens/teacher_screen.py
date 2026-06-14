@@ -34,7 +34,7 @@ def teacher_dashboard():
         header_dashboard()
     with c2:
         st.subheader(f"Welcome, {teacher_data['name']}!", text_alignment="center")
-        if st.button("Logout", type = "secondary", shortcut="control + backspace", key="loginout", width="stretch"):
+        if st.button("Logout", type = "secondary", shortcut="control + backspace", key="loginout", width="stretch", icon=":material/exit_to_app:"):
             st.session_state['is_logged_in'] = False
             del st.session_state.teacher_data
             st.rerun()
@@ -85,7 +85,7 @@ def teacher_tab_take_attendance():
     
     subject_options = {f"{sub['name']} - {sub['subject_code']}": sub['subject_id'] for sub in subjects}
 
-    col1, col2 = st.columns([6,3], gap="xxsmall")
+    col1, col2 = st.columns([6,3], gap="xxsmall", vertical_alignment='bottom')
     with col1:
         selected_subject_label = st.selectbox("Select Subject", options=list(subject_options.keys()))
 
@@ -150,7 +150,7 @@ def teacher_tab_take_attendance():
 
 
         with c3:
-            if st.button("AI Voice Attendance", type="secondary", icon = ":material/camera_rear:", width="stretch"):
+            if st.button("AI Voice Attendance", type="secondary", icon = ":material/mic:", width="stretch"):
                 voice_attendance_dialog(selected_subject_id)
         
         
@@ -161,7 +161,7 @@ def teacher_tab_manage_subjects():
     with col1:
         st.header("Manage Subjects", width = 'stretch')
     with col2:
-        if st.button('Create new subject', width = 'stretch'):
+        if st.button('Create new subject', width = 'stretch', icon=":material/add:"):
             create_subject_dailog(st.session_state.teacher_data['teacher_id'])
     
     subjects = get_teacher_subjects(teacher_id)
@@ -260,7 +260,7 @@ def teacher_register():
     with c1:
         header_dashboard()
     with c2:
-        if st.button("Go to homepage", type = "secondary", shortcut="control + backspace", key="loginbckbtn", width="stretch"):
+        if st.button("Go to homepage", type = "secondary", shortcut="control + backspace", key="loginbckbtn", width="stretch", icon=":material/home_app_logo:"):
             st.session_state['login_type'] = None
             st.rerun()
     st.header("Register your teacher profile", text_alignment="center")
@@ -295,7 +295,7 @@ def teacher_login():
     with c1:
         header_dashboard()
     with c2:
-        if st.button("Go to homepage", type = "secondary", shortcut="control + backspace", key="loginbckbtn", width="stretch"):
+        if st.button("Go to homepage", type = "secondary", shortcut="control + backspace", key="loginbckbtn", width="stretch", icon=":material/home_app_logo:"):
             st.session_state['login_type'] = None
             st.rerun()
     st.header("Login using password", text_alignment="center")

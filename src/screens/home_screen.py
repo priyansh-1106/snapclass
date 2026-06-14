@@ -19,4 +19,3 @@ def home_screen():
             st.session_state['login_type'] = 'teacher'
             st.rerun()
         
-
