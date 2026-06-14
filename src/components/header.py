@@ -15,7 +15,7 @@ def header():
 def header_dashboard():
     st.markdown(f"""
     <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <img src="{logo_image}" alt="Logo" style="height: 85px;">
-        <h2 style = "text-align: left; color: #5865F2;">SNAP<br>CLASS</h2>
+        <img src="{logo_image}" alt="Logo" style="height: 80px;">
+        <h2 style = "text-align: left; color: black; margin-top : 27px;">SNAP<br>CLASS</h2>
     </div>
     """, unsafe_allow_html=True)

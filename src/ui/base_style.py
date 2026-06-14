@@ -33,8 +33,9 @@ def style_background_dashboard():
 def style_base_layout():
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1980&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap')
+        
                 
                 [data-testid = "stHeader"], [data-testid = "stToolbar"]{
                     display: none !important;
@@ -45,18 +46,28 @@ def style_base_layout():
                 }
 
                 .block-container {
-                    padding-top: 1.5rem !important;
+                    padding-top: 0rem !important;
+                    margin-top: 0rem !important;
+                }
+
+                .stApp > div:first-child {
+                    padding-top: 0 !important;
+                    margin-top: 0 !important;
                 }
                     
                 h1{
                     font-family: 'Climate Crisis', sans-serif !important;
                     font-size: 3.5rem !important;
+                    font-weight : 300 !important;
+                    font-variation-settings: "YEAR" 1980;
                     line-height: 1.1 !important;
                     margin-bottom: 0rem !important; 
                 }    
                 h2{
                     font-family: 'Climate Crisis', sans-serif !important;
                     font-size: 2rem !important;
+                    font-weight : 300 !important;
+                    font-variation-settings: "YEAR" 1980;
                     line-height: 0.9 !important;
                     margin-bottom: 0rem !important; 
                 }    
@@ -90,7 +101,7 @@ def style_base_layout():
                     padding: 10px 20px !important;
                     border: none !important;
                     transition: transform 0.25s ease-in-out !important;;
-                }   
+                }     
 
                 button:hover {
                     transform: scale(1.05) !important;
