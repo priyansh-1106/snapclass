@@ -4,7 +4,7 @@ from datetime import datetime
 import pandas as pd
 from src.ui.base_style import style_base_layout, style_background_dashboard
 from src.components.header import header_dashboard
-from src.database.db import login_teacher, create_teacher, check_teacher_exists, get_teacher_subjects
+from src.database.db import login_teacher, create_teacher, check_teacher_exists, get_teacher_subjects, get_attendance_for_teacher
 from src.components.dailog_create_subject import create_subject_dailog
 from src.components.subject_card import subject_card
 from src.components.dialog_share_subject import share_subject_dialog
@@ -191,6 +191,41 @@ def teacher_tab_manage_subjects():
 
 def teacher_tab_attendance_records():
     st.header("Attendance Records")
+    teacher_id = st.session_state.teacher_data['teacher_id']
+    records = get_attendance_for_teacher(teacher_id)
+    if not records:
+        return
+    data = []
+    for rec in records:
+        ts = rec.get('timestamp')
+
+        data.append({
+            "ts_group" : ts.split(".")[0] if ts else None,
+            "Time" : datetime.fromisoformat(ts).strftime("%Y-%m-%d %I:%M %p") if ts else 'N/A',
+            "Subject" : rec['subjects']['name'],
+            "Subject Code" : rec['subjects']['subject_code'],
+            "is_present" : bool(rec.get("is_present", False))
+        })
+
+    df = pd.DataFrame(data)
+
+    summary = (
+        df.groupby(['ts_group', 'Time', 'Subject', 'Subject Code'])
+        .agg(
+            Present_Count = ('is_present', 'sum'),
+            Total_Count = ('is_present', 'count')
+        ).reset_index()
+    )
+
+    summary['Attendance Stats'] = (
+        "✅" + summary['Present_Count'].astype(str) + '/' + summary['Total_Count'].astype(str) + "Students"
+    )
+
+    display_df = (summary.sort_values(by='ts_group', ascending = False)
+                  [['Time', 'Subject', 'Subject Code', 'Attendance Stats']])
+
+    st.dataframe(display_df, width = 'stretch', hide_index = True)
+
 
 
 
